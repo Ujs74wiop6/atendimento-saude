@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Consultas - Atendimento Saúde</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topo">
+    <h1>Atendimento Saúde</h1>
+    <nav>
+      <a href="pacientes.html">Pacientes</a>
+      <a href="consultas.html" class="ativo">Consultas</a>
+      <button class="sair" onclick="sair()">Sair</button>
+    </nav>
+  </header>
+
+  <main>
+    <p id="mensagem" class="mensagem"></p>
+
+    <section class="cartao">
+      <h2 id="titulo-form">Nova consulta</h2>
+      <form id="form-consulta">
+        <input type="hidden" id="id">
+        <div class="campos">
+          <label>Paciente *
+            <select id="paciente_id" required>
+              <option value="">Selecione...</option>
+            </select>
+          </label>
+          <label>Data da consulta *
+            <input type="date" id="data_consulta" required>
+          </label>
+          <label>Descrição *
+            <input type="text" id="descricao" maxlength="255" required>
+          </label>
+          <label>Valor (R$) *
+            <input type="number" id="valor" step="0.01" min="0" required>
+          </label>
+        </div>
+        <button type="submit">Salvar</button>
+        <button type="button" id="cancelar" class="secundario">Cancelar</button>
+      </form>
+    </section>
+
+    <section class="cartao">
+      <h2>Consultas cadastradas</h2>
+      <table>
+        <thead>
+          <tr><th>ID</th><th>Paciente</th><th>Data</th><th>Descrição</th><th>Valor</th><th>Ações</th></tr>
+        </thead>
+        <tbody id="lista"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="api.js"></script>
+  <script src="consultas.js"></script>
+</body>
+</html>

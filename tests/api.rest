@@ -1,0 +1,102 @@
+#1) Login  
+#2) Pacientes  
+#3) Consultas 
+
+@baseUrl = http://localhost:5000
+
+
+# 1. LOGIN
+
+### Login com sucesso (200)
+# @name login
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+  "login": "dw3",
+  "senha": "dw3"
+}
+
+###
+# Variável com o token retornado pelo login acima.
+# token com duração de (1h)
+
+@token = {{login.response.body.$.token}}    
+
+
+# 2. PACIENTES
+
+### GetAllPacientes (200)
+GET {{baseUrl}}/pacientes
+Authorization: Bearer {{token}}
+
+### InsertPaciente (201)
+POST {{baseUrl}}/pacientes
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "nome": "Maria da Silva",
+  "cpf": "123.456.789-00",
+  "data_nascimento": "1985-03-20",
+  "telefone": "(17) 99999-0000"
+}
+
+### GetPacienteByID (200)
+GET {{baseUrl}}/pacientes/1
+Authorization: Bearer {{token}}
+
+### UpdatePaciente (200)
+PUT {{baseUrl}}/pacientes/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "nome": "Maria da Silva Santos",
+  "cpf": "123.456.789-00",
+  "data_nascimento": "1985-03-20",
+  "telefone": "(17) 98888-1111"
+}
+
+### DeletePaciente (200). Só funciona se o paciente não tiver consultas ativas.
+DELETE {{baseUrl}}/pacientes/1
+Authorization: Bearer {{token}}
+
+
+# 3. CONSULTAS
+
+### GetAllConsultas (200)
+GET {{baseUrl}}/consultas
+Authorization: Bearer {{token}}
+
+### InsertConsulta (201)
+POST {{baseUrl}}/consultas
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "paciente_id": 1,
+  "data_consulta": "2026-11-10",
+  "descricao": "Consulta de rotina",
+  "valor": 150.00
+}
+
+### GetConsultaByID (200)
+GET {{baseUrl}}/consultas/1
+Authorization: Bearer {{token}}
+
+### UpdateConsulta (200)
+PUT {{baseUrl}}/consultas/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "paciente_id": 1,
+  "data_consulta": "2026-11-12",
+  "descricao": "Retorno com exames",
+  "valor": 200.50
+}
+
+### DeleteConsulta (200)
+DELETE {{baseUrl}}/consultas/1
+Authorization: Bearer {{token}}

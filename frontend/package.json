@@ -1,0 +1,12 @@
+{
+  "name": "atendimento-saude-frontend",
+  "version": "1.0.0",
+  "description": "Front-end do módulo de saúde (Pacientes e Consultas)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}

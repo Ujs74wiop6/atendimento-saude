@@ -1,0 +1,43 @@
+services:
+
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: atendimento
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5431:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d atendimento"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    environment:
+      DB_HOST: db   
+      DB_PORT: "5432"
+      DB_NAME: atendimento
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      JWT_SECRET: troque-este-segredo
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:
