@@ -18,8 +18,8 @@ docker compose up --build -d
 
 Depois acesse **http://localhost:3000** e entre com:
 
-- **Login:** `saude`
-- **Senha:** `saude`
+- **Login:** `dw3`
+- **Senha:** `dw3`
 
 **Para zerar o banco** (apaga os dados e recria as tabelas a partir do `init.sql`):
 
