@@ -45,8 +45,6 @@ atendimento-saude/
 
 # Mapeamento de Dados
 
-## 1. Diagrama entidade-relacionamento
-
 ```mermaid
 erDiagram
     PACIENTE ||--o{ CONSULTA : "tem"
