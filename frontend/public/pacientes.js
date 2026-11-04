@@ -3,7 +3,7 @@ exigirLogin(); // sem token, volta para o login
 const form = document.getElementById("form-paciente");
 const lista = document.getElementById("lista");
 
-// ---------- Listar (GetAll) ----------
+// Listar (GetAll)
 async function carregarLista() {
   try {
     const pacientes = await getAllPacientes();
@@ -30,7 +30,7 @@ async function carregarLista() {
   }
 }
 
-// ---------- Salvar: Insert (sem id) ou Update (com id) ----------
+// Salvar: Insert (sem id) ou Update (com id)
 form.addEventListener("submit", async (evento) => {
   evento.preventDefault();
 
@@ -57,7 +57,7 @@ form.addEventListener("submit", async (evento) => {
   }
 });
 
-// ---------- Editar: busca o paciente (GetByID) e preenche o formulário ----------
+// Editar: busca o paciente (GetByID) e preenche o formulário
 async function editar(id) {
   try {
     const p = await getPacienteByID(id);
@@ -73,7 +73,7 @@ async function editar(id) {
   }
 }
 
-// ---------- Remover (Delete) ----------
+// Remover (Delete)
 async function remover(id) {
   if (!confirm("Deseja realmente remover este paciente?")) return;
 

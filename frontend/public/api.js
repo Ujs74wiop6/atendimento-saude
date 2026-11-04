@@ -1,9 +1,3 @@
-// ============================================================
-// api.js: tudo que conversa com a API (back-end) e utilitários
-// compartilhados pelas telas.
-// ============================================================
-
-// Endereço da API. O navegador chama direto o back-end (porta 5000).
 const API_URL = "http://localhost:5000";
 
 // ---------- Token (JWT) no localStorage ----------
@@ -26,7 +20,7 @@ function sair() {
   window.location.href = "index.html";
 }
 
-// ---------- Função base: todas as chamadas passam por aqui ----------
+// Função base: todas as chamadas passam por aqui
 
 async function requisicao(metodo, caminho, corpo) {
   const opcoes = {
@@ -64,7 +58,7 @@ async function requisicao(metodo, caminho, corpo) {
   return dados;
 }
 
-// ---------- Login ----------
+// Login
 
 async function fazerLogin(login, senha) {
   const dados = await requisicao("POST", "/login", { login, senha });
@@ -72,8 +66,6 @@ async function fazerLogin(login, senha) {
   localStorage.setItem("usuario", JSON.stringify(dados.usuario));
   return dados;
 }
-
-// ---------- Pacientes (5 funções) ----------
 
 function getAllPacientes() {
   return requisicao("GET", "/pacientes");
@@ -90,9 +82,6 @@ function updatePaciente(id, dados) {
 function deletePaciente(id) {
   return requisicao("DELETE", "/pacientes/" + id);
 }
-
-// ---------- Consultas (5 funções) ----------
-
 function getAllConsultas() {
   return requisicao("GET", "/consultas");
 }
@@ -109,7 +98,6 @@ function deleteConsulta(id) {
   return requisicao("DELETE", "/consultas/" + id);
 }
 
-// ---------- Utilitários das telas ----------
 
 // Mostra uma mensagem de sucesso (verde) ou erro (vermelha) no <p id="mensagem">
 function mostrarMensagem(texto, ehErro = false) {

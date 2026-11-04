@@ -4,7 +4,7 @@ const form = document.getElementById("form-consulta");
 const lista = document.getElementById("lista");
 const selectPaciente = document.getElementById("paciente_id");
 
-// ---------- Preenche o <select> com os pacientes (reaproveita getAllPacientes) ----------
+// Preenche o <select> com os pacientes (reaproveita getAllPacientes)
 async function carregarPacientes() {
   try {
     const pacientes = await getAllPacientes();
@@ -15,7 +15,7 @@ async function carregarPacientes() {
   }
 }
 
-// ---------- Listar (GetAll) ----------
+// Listar (GetAll)
 async function carregarLista() {
   try {
     const consultas = await getAllConsultas();
@@ -42,7 +42,7 @@ async function carregarLista() {
   }
 }
 
-// ---------- Salvar: Insert (sem id) ou Update (com id) ----------
+// Salvar: Insert (sem id) ou Update (com id)
 form.addEventListener("submit", async (evento) => {
   evento.preventDefault();
 
@@ -69,7 +69,7 @@ form.addEventListener("submit", async (evento) => {
   }
 });
 
-// ---------- Editar: busca a consulta (GetByID) e preenche o formulário ----------
+// Editar: busca a consulta (GetByID) e preenche o formulário 
 async function editar(id) {
   try {
     const c = await getConsultaByID(id);
@@ -85,7 +85,7 @@ async function editar(id) {
   }
 }
 
-// ---------- Remover (Delete) ----------
+// Remover (Delete)
 async function remover(id) {
   if (!confirm("Deseja realmente remover esta consulta?")) return;
 
